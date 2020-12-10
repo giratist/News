@@ -1,0 +1,90 @@
+Index: resources/views/newss.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/resources/views/newss.blade.php b/resources/views/newss.blade.php
+--- a/resources/views/newss.blade.php	(date 1607374514790)
++++ b/resources/views/newss.blade.php	(date 1607374514790)
+@@ -5,44 +5,45 @@
+     Guest <a href="/login">Login</a> - <a href="/register">Register</a>
+ @endif
+ 
+-<br>
+-@if ($userEmail)
+-    <form action="/newss" method="POST">
+-        <input type="text" name="title" placeholder="Title">
+-        <input type="text" name="text" placeholder="Text">
+-        <input type="submit" value="create">
+-    </form>
+-@endif
++<tbody>
++    <table>
+ 
+ 
+-
+-<table border="1">
+-    <thead>
+-    <tr>
+-        <th>ID</th>
+-        <th>Title</th>
+-        <th>Text</th>
+-        <th>User ID</th>
+-    </tr>
+-    </thead>
+-    <tbody>
+-    @foreach($newss as $news)
+-        <tr>
+-            <td>{{$news['id']}}</td>
+-            <td>{{$news['title']}}</td>
+-            <td>{{$news['text']}}</td>
+-            <td>{{$news['user_id']}}</td>
+-        </tr>
+-    @endforeach
+-    @if ($userEmail)
+-        <form action="/newss" method="post">
+-            <input type="hidden" name="_method" value="PUT">
+-            <input type="id" name="{{$newsId}}" placeholder="id">
+-            <input type="text" name="title" placeholder="Title">
+-            <input type="text" name="text" placeholder="Text">
++    <div class="container">
++        <div class="row">
++            <div class="col-md-8 col-md-offset-2">
++                <div class="panel panel-default">
++                    <div class="panel-heading">News admin <a href="/newss" class="btn btn-success"> + Create</a></div>
++                    <div class="panel-body">
++                        <table class="table">
++                            <thead>
++                            <tr>
++                                <th>id</th>
++                                <th>Title</th>
++                                <th>Type</th>
++                                <th>Action</th>
++                            </tr>
++                            </thead>
++                            <tbody>
++                            @foreach($newss as $news)
++                                <tr>
++                                    <td>{{ $news->['id']}}</td>
++                                    <td>{{ $news->title }}</td>
++                                    <td>{{ $news->text }}</td>
++                                    <td style="text-align:right;">
++                                        <a href="/newss/{{ $news->id }}" class="btn btn-info">View</a>
++                                        <a href="/newss/{{ $news->id }}/edit" class="btn btn-success">Edit</a>
++                                        <a href="/newss/{{ $news->id }}/destroy" class="btn btn-danger">Dellete</a>
++                                    </td>
++                                </tr>
++                            @endforeach
++                            </tbody>
++                        </table>
++                    </div>
++                </div>
++            </div>
++        </div>
++    </div>
+ 
+-            <input type="submit" value="update">
+-        </form>
+-    @endif
+     </tbody>
+ </table>
